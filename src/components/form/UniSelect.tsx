@@ -4,10 +4,11 @@ import { Controller } from "react-hook-form";
 type TUniSelectProps = {
   label: string;
   name: string;
-  options: { value: string; label: string; disabled?: boolean }[];
+  options: { value: string; label: string; disabled?: boolean }[] | undefined;
+  disabled: boolean;
 };
 
-const UniSelect = ({ label, name, options }: TUniSelectProps) => {
+const UniSelect = ({ label, name, options, disabled }: TUniSelectProps) => {
   return (
     <Controller
       name={name}
@@ -18,6 +19,7 @@ const UniSelect = ({ label, name, options }: TUniSelectProps) => {
             {...field}
             options={options}
             size="large"
+            disabled={disabled}
           />
           {error && <small style={{ color: "red" }}>{error.message}</small>}
         </Form.Item>
