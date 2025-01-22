@@ -33,7 +33,9 @@ const CreateAcademicSemester = () => {
     };
 
     try {
-      const res = (await addAcademicSemester(semesterData)) as TResponse;
+      const res = (await addAcademicSemester(
+        semesterData
+      )) as TResponse<string>;
       console.log(res);
       if (res.error) {
         toast.error(res.error.data.message, { id: toastId });
@@ -52,14 +54,30 @@ const CreateAcademicSemester = () => {
           onSubmit={onSubmit}
           resolver={zodResolver(academicSemesterSchema)}
         >
-          <UniSelect label="Name" name="name" options={semesterOptions} />
-          <UniSelect label="Year" name="year" options={yearOptions} />
+          <UniSelect
+            label="Name"
+            name="name"
+            options={semesterOptions}
+            disabled={false}
+          />
+          <UniSelect
+            label="Year"
+            name="year"
+            options={yearOptions}
+            disabled={false}
+          />
           <UniSelect
             label="Start Month"
             name="startMonth"
             options={monthOptions}
+            disabled={false}
           />
-          <UniSelect label="End Month" name="endMonth" options={monthOptions} />
+          <UniSelect
+            label="End Month"
+            name="endMonth"
+            options={monthOptions}
+            disabled={false}
+          />
           <Button htmlType="submit">Submit</Button>
         </Uniform>
       </Col>
